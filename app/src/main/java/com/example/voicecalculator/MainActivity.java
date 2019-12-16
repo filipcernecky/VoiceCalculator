@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
                     }
                     break;
                 case 30:
-                    char operatorFound = getOperatorFromResult(data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS));
+                    char operatorFound = getOperatorFromResult(data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS).get(0).toLowerCase());
                     if (operatorFound != '0') {
                         OPERATOR = operatorFound;
                         operatorTextView.setText(String.valueOf(operatorFound).toLowerCase());
@@ -137,12 +137,12 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
     }
 
     // method to loop through results trying to find an operator
-    private char getOperatorFromResult(ArrayList<String> results) {
-        for (String str : results) {
+    private char getOperatorFromResult(String str) {
+
             if (getCharOperatorFromText(str) != '0') {
                 return getCharOperatorFromText(str);
             }
-        }
+
         return '0';
     }
 
@@ -151,24 +151,34 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
     private int getIntNumberFromText(String strNum) {
         switch (strNum) {
             case "zero":
+            case "0":
                 return 0;
             case "one":
+            case "1":
                 return 1;
             case "two":
+            case "2":
                 return 2;
             case "three":
+            case "3":
                 return 3;
             case "four":
+            case "4":
                 return 4;
             case "five":
+            case "5":
                 return 5;
+            case "6":
             case "six":
                 return 6;
             case "seven":
+            case "7":
                 return 7;
             case "eight":
+            case "8":
                 return 8;
             case "nine":
+            case "9":
                 return 9;
         }
         return -1;
